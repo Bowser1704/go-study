@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"time"
 )
 
 type User struct {
@@ -15,6 +16,14 @@ type User struct {
 	QQ			string
 	Wechat		string
 
+}
+
+type Order struct {
+	gorm.Model
+	Time		time.Time
+	Content 	string
+	PostID 		uint
+	Users		[]* User	`gorm:"many2many:user_orders;"`
 }
 
 func openDB(username, password, addr, dbname string) *gorm.DB {
@@ -41,13 +50,13 @@ func main() {
 		db.CreateTable(&User{})
 	}
 
-	user := User{Name:"Bowser",
-		Avatar:"https://avatars2.githubusercontent.com/u/43539191?s=460&v=4",
-		StNum:"2018212576",
-		QQ:"896379346",
-		Tel:"111111111",
-		Wechat:"wwwwww",
-	}
-	db.Create(&user)
+	//user := User{Name:"Bowser",
+	//	Avatar:"https://avatars2.githubusercontent.com/u/43539191?s=460&v=4",
+	//	StNum:"2018212576",
+	//	QQ:"896379346",
+	//	Tel:"111111111",
+	//	Wechat:"wwwwww",
+	//}
+	//db.Create(&user)
 	db.Close()
 }
