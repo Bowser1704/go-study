@@ -1,0 +1,6 @@
+{"level":"INFO","timestamp":"2019-05-26 14:05:24.792","file":"gin-demo/main.go:52","msg":"start to listening :8080"}
+{"level":"INFO","timestamp":"2019-05-26 14:05:24.792","file":"gin-demo/main.go:49","msg":"the router has been deployed(部署) successfully"}
+{"level":"INFO","timestamp":"2019-05-26 14:20:03.427","file":"gin-demo/main.go:52","msg":"start to listening :8080"}
+{"level":"INFO","timestamp":"2019-05-26 14:20:03.427","file":"gin-demo/main.go:49","msg":"the router has been deployed(部署) successfully"}
+{"level":"INFO","timestamp":"2019-05-26 14:24:59.217","file":"gin-demo/main.go:52","msg":"start to listening :8080"}
+{"level":"INFO","timestamp":"2019-05-26 14:24:59.217","file":"gin-demo/main.go:49","msg":"the router has been deployed(部署) successfully"}
