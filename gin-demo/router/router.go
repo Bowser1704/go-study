@@ -1,7 +1,7 @@
 package router
 
 import (
-	"github.com/apiserver_demos/demo07/handler/user"
+	"github.com/Bowser1704/go-study/gin-demo/handler/user"
 	"net/http"
 
 	"github.com/Bowser1704/go-study/gin-demo/handler/sd"
@@ -25,13 +25,13 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	})
 
 	// user handler
-	u := g.Group("/user")
+	u := g.Group("/v1/user")
 	{
-		u.GET("/:id", user.Create)
-		u.POST("", user.Post)
+		u.POST("", user.Create)
+		u.GET("/:id", user.Get)
 		u.PUT("/:id", user.Update)
-		u.GET("/list", user.List)
 		u.DELETE("/:id", user.Delete)
+		u.GET("", user.ListUser)
 	}
 	// health chack handlers
 	// svcd.GET("",f) 先传入一个url,再来一个函数,一一映射.

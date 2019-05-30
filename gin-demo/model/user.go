@@ -3,7 +3,7 @@ package model
 import (
 	"github.com/Bowser1704/go-study/gin-demo/pkg/auth"
 	"github.com/Bowser1704/go-study/gin-demo/pkg/constvar"
-	"golang.org/x/tools/go/ssa/interp/testdata/src/fmt"
+	"fmt"
 	validator "gopkg.in/go-playground/validator.v9"
 )
 
@@ -41,13 +41,13 @@ func DeleteUser (id uint64) error {
 }
 
 //查询用户列表,通过名字查询,查询,查询
-func ListUser (username string, offest, limit int) ([]*UserModel, uint8, error) {
+func ListUser (username string, offest, limit int) ([]*UserModel, uint64, error) {
 	if limit == 0 {
 		limit = constvar.DefaultLimit
 	}
 
 	users := make([]*UserModel, 0)
-	var count uint8
+	var count uint64
 
 	where := fmt.Sprint("username like '%%%s%%'", username)	//转义字符%%%s%%
 	if err := DB.Self.Model(&UserModel{}).Where(where).Count(count).Error; err != nil {

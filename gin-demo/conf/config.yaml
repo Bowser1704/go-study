@@ -12,4 +12,8 @@ log:
   log_rotate_date: 1        #配合rollingPolicy: daily 选择几天来转存
   log_rotate_size: 1        #配合rollingPolicy: size  选择几天来转存
   log_backup_count: 7       #日志文件达到转存标准后会压缩备份, 这里指定压缩文件的最大个数
-
+db:
+  name: db_apiserver
+  addr: 127.0.0.1:3306
+  username: root
+  password: @Bowser1704

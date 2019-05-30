@@ -9,7 +9,7 @@ type BaseModel struct {
 	Id        uint64     `gorm:"primary_key;AUTO_INCREMENT;column:id" json:"-"`
 	CreatedAt time.Time  `gorm:"column:createdAt" json:"-"`
 	UpdatedAt time.Time  `gorm:"column:updatedAt" json:"-"`
-	DeletedAt *time.Time `gorm:"column:deletedAt" sql:"index" json:"-"`
+	DeletedAt *time.Time `gorm:"column:deletedAt" sql:"index" json:"-"`	//为什么存地址
 }
 
 type UserInfo struct {
@@ -21,6 +21,7 @@ type UserInfo struct {
 	UpdatedAt string `json:"updatedAt"`
 }
 
+//为什么用UserList呢
 type UserList struct {
 	Lock  *sync.Mutex
 	IdMap map[uint64]*UserInfo
