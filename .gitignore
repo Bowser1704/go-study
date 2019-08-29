@@ -1,2 +1,4 @@
 update-golang/
-
+.idea
+go.mod
+go.sum
