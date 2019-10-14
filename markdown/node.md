@@ -1,3 +1,18 @@
+## 常用函数
+
+```go
+#string到int
+int,err:=strconv.Atoi(string)
+#string到int64
+int64, err := strconv.ParseInt(string, 10, 64)
+#int到string
+string:=strconv.Itoa(int)
+#int64到string
+string:=strconv.FormatInt(int64,10)
+```
+
+
+
 ## Q&A
 
 1. 为什么引用类型叫引用类型
@@ -46,7 +61,6 @@ rune--int32
   }
   ```
 
-  ​	
 
 ### 1.2.常量
 
