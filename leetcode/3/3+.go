@@ -46,8 +46,23 @@ func max(a, b int) int {
         return b
     }
 }
+
+func lengthOf(s string) int {
+    lastLocation := make(map[byte]int)
+    var start, maxLength int
+    for i, c := range []byte(s) {
+        if last, ok := lastLocation[c]; ok && last >= start {
+            start = last+1
+        }
+        if i - start + 1 > maxLength {
+            maxLength = i - start + 1
+        }
+        lastLocation[c] = i
+    }
+    return maxLength
+}
 func main(){
-    //fmt.Println(lengthOfLongestSubstring2("hijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789hijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789hijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789hijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789hijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789hijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"))
-    fmt.Println(lengthOfLongestSubstring2("abcabcaa"))
+    //fmt.Println(lengthOf("hijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789hijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789hijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789hijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789hijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789hijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"))
+    fmt.Println(lengthOf("aabaab!bb"))
 }
 

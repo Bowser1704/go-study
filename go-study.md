@@ -83,7 +83,9 @@ Go中储存的数据都是utf-8编码，所以我们对字符串的操作可以�
 
 ```go
 //string的强转是生成对应的Unicode码点，utf-8字符，
-string(65)// A
+//底层每一个元素类型是 int32/rune
+string(65)// 
+//range 遍历字符串得到的是 rune
 
 //字符串是只读的，不能修改底层内存存储的值
 func HasPrefix(s, prefix string) bool {
@@ -117,6 +119,10 @@ func Contains(s, substr string) bool {
    1. 数组的长度是数组的一部分，即不同长度数组为不同数据类型
    2. 数组的长度必须是常量，编译阶段就要确定。
    3. 如果一个数组的元素类型是可以相互比较的，那么数组类型也是可以相互比较的，即长度和元素类型都一样的数组才可以比较。
+
+### 文本和html模块
+
+主要是两个package的使用，html和text。
 
 ### 运算符
 
