@@ -341,6 +341,8 @@ func foo(c *gin.Context) {
 
 ## interface与reflect
 
+### interface
+
 interface申明一些方法，如果其他类型实现了这些方法，那么就实现了这个interface，interface只能使用自己申明的方法，如果其他类型有其他方法，也是不能**直接**调用的，但是可以使用类型断言去扩展他的方法，代码示例
 
 ```go
@@ -387,6 +389,71 @@ func main() {
     fmt.Println(ok)			//false
 }
 ```
+
+- 如果 S 包含一个匿名字段 T，S 的方法集不包含接受者为 *T 的方法提升。
+
+   这条规则说的是当我们嵌入一个类型，嵌入类型的接受者为指针的方法将不能被外部类型的值访问。这也是跟我们上面陈述的接口规则一致。
+
+- 如果 S 包含一个匿名字段 *T，S 和 *S 的方法集都包含接受者为 T 或者 *T 的方法提升
+
+- 如果 S 包含一个匿名字段 T，S 和 *S 的方法集都包含接受者为 T 的方法提升。
+- 继承：如果 struct 中的一个匿名段实现了一个 method，那么包含这个匿名段的 struct 也能调用该 method。 
+- 重写：如果 struct 中的一个匿名字段实现了一个 method，包含这个匿名字段的 struct 是可以重写匿名字段的方法的。也就是如果struct也实现了一个method，会覆盖原匿名字段的method。
+
+#### 匿名接口
+
+```go
+// gin源码，response_writer.go:40
+// 实现 ResponseWriter 接口，http.ResponseWriter原本就是一个interface
+type responseWriter struct {
+    http.ResponseWriter
+    size   int
+    status int
+}
+/*
+1, 初始化的时候，内嵌接口要用一个实现此接口的结构体赋值
+2，外层结构体中，只能调用内层接口定义的函数。 这是由于编译时决定。
+3，外层结构体，可以作为receiver，重新定义同名函数，这样可以覆盖内层内嵌结构中定义的函数
+4，如果上述第3条实现，那么可以用外层结构体引用内嵌接口的实例，并调用内嵌接口的函数
+*/
+```
+
+看个例子
+
+```go
+type tester interface {
+    test() string
+}
+type OldTester struct {
+    info string
+}
+type NewTester struct {
+    tester
+    info string
+}
+func (older OldTester) test() string {
+    return older.info
+}
+func (newer NewTester) test() string {
+    return newer.info
+}
+
+func printTest(t tester) {
+    fmt.Println(t.test())
+}
+
+func main() {
+    older := OldTester{info:"old"}
+    // 必须是实现了tester interface的类型才可以实例化
+    newer := NewTester{tester:older, info:"new"}
+    printTest(older)	//old
+    printTest(newer)	//new
+    //如果NewTester没有实现tester，下面也会输出old
+}
+
+```
+
+
 
 
 

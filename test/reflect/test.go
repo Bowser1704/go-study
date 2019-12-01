@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"reflect"
-	"github.com/gin-gonic/gin"
 )
 
 func main() {
