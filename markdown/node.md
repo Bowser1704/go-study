@@ -329,8 +329,3 @@ var receive <-chan int	//即说明这个通道只能发送数据给使用者
 
 - Handle
 - `HandleFunc`
-
-
-
-
-

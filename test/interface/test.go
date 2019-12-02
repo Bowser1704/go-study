@@ -12,6 +12,7 @@ type NewTester struct {
 	tester
 	info string
 }
+
 func (older OldTester) test() string {
 	return older.info
 }
@@ -24,11 +25,10 @@ func printTest(t tester) {
 }
 
 func main() {
-	older := OldTester{info:"old"}
+	older := OldTester{info: "old"}
 	// 必须是实现了tester interface的类型才可以实例化
-	newer := NewTester{tester:older, info:"new"}
-	printTest(older)	//old
-	printTest(newer)	//new
+	newer := NewTester{tester: older, info: "new"}
+	printTest(older) //old
+	printTest(newer) //new
 	//如果NewTester没有实现tester，下面也会输出old
 }
-
